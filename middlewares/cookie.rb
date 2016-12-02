@@ -18,4 +18,9 @@ class CookieMiddleware < Midori::Middleware
   helper :get_cookie do |key|
     request.header['Cookie'][key]
   end
+
+  helper :set_cookie do |key, value|
+    header.compare_by_identity
+    header['Set-Cookie'] = "#{key}=#{value}"
+  end
 end

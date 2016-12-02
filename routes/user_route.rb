@@ -9,7 +9,7 @@ class UserRoute < Midori::API
 
   get '/:username' do
     # View User Profile
-    UserService.login('test', 'test')
+    set_cookie('test', 'test')
   end
 
   post '/:username' do
