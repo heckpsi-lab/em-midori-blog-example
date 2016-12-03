@@ -17,6 +17,11 @@ define_error :unauthorized_error, :resource_conflict
 
 class Route < Midori::API
   use CookieMiddleware
+
+  helper :content_type do |val|
+    header['Content-Type'] = val
+  end
+
   capture UnauthorizedError do
     Midori::Response.new(401,
                          {},
@@ -32,6 +37,7 @@ class Route < Midori::API
                           msg: 'Resource has been occupied'
                          }.to_json)
   end
+
   mount '/post', PostRoute
   mount '/user', UserRoute
   mount '/static', StaticRoute # NOT SAFE, DEVELOPMENT ONLY, use nginx as static server in production
