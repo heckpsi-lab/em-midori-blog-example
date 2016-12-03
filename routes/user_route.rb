@@ -12,6 +12,7 @@ class UserRoute < Midori::API
     # Register
     content_type 'application/json'
     req = JSON.parse(request.body)
+    status = 201
     UserService.register(req['username'], req['password']).to_json
   end
 

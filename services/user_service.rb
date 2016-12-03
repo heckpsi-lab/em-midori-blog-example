@@ -16,14 +16,14 @@ class UserService
       user = User.find(username: username)
       raise ResourceConflict unless user.nil?
       User.create(username: username, password: password)
-      {code: 200}
+      {code: 201}
     end
 
     def auth!(token, user_id = nil)
-      token = Token.find({token: token})&.user
-      raise UnauthorizedError if token.nil?
+      user = Token.find({token: token})&.user
+      raise UnauthorizedError if user.nil?
       raise UnauthorizedError unless user_id.nil? || user.id == user_id
-      nil
+      user
     end
   end
 end

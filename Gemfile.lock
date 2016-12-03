@@ -8,6 +8,7 @@ GEM
       mustermann (~> 0.4)
     eventmachine (1.2.1)
     http_parser.rb (0.6.0)
+    kramdown (1.13.1)
     mustermann (0.4.0)
       tool (~> 0.2)
     pg (0.19.0)
@@ -23,6 +24,7 @@ PLATFORMS
 DEPENDENCIES
   bundler
   em-midori (>= 0.1.5.2)
+  kramdown
   pg (~> 0.17)
   pg_jruby
   rake

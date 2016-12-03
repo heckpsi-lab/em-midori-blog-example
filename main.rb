@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require
 require 'yaml'
 require 'json'
+require 'date'
 require 'em-midori/extension/sequel'
 
 Dir[File.dirname(__FILE__) + '/middlewares/*.rb'].each {|file| require file }
