@@ -18,8 +18,8 @@ class UserRoute < Midori::API
 
   get '/:username' do
     # View User Profile
-    UserService.auth!(get_cookie('token'))
-    'test'
+    user = UserService.auth!(get_cookie('token'))
+    #TODO: view profile
   end
 
   put '/:username' do

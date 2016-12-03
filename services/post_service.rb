@@ -1,12 +1,12 @@
 class PostService
   class << self
-    def request_post(id)
+    def read_post(id)
       post = Post.find(id: id)
       raise Midori::Exception::NotFound if post.nil?
       {code: 200, result: post['content']}
     end
 
-    def request_post_source(id)
+    def read_post_source(id)
       post = Post.find(id: id)
       raise Midori::Exception::NotFound if post.nil?
       {code: 200, result: post['source']}
