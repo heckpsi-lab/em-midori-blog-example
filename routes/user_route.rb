@@ -1,15 +1,22 @@
 class UserRoute < Midori::API
-  post '/login' do
-
+  post '/' do
+    # Login
+    req = JSON.parse(request.body)
+    result = UserService.login(req['username'], req['password'])
+    set_cookie('token', result[:result][:token])
+    result.to_json
   end
 
-  post '/register' do
-
+  put '/' do
+    # Register
+    req = JSON.parse(request.body)
+    UserService.register(req['username'], req['password']).to_json
   end
 
   get '/:username' do
     # View User Profile
-    set_cookie('test', 'test')
+    UserService.auth!(get_cookie('token'))
+    'test'
   end
 
   post '/:username' do

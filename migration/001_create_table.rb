@@ -5,13 +5,18 @@ Sequel.migration do
       primary_key :id
       String :username, text: true, null: false
       String :password, text: true, null: false
-      String :avatar, text: true, null: false
-      Bignum :role, null: false
+      String :avatar, text: true, null: true
+    end
+
+    create_table(:tokens) do
+      primary_key :id
+      String :token, text: true, null: false
+      foreign_key :user_id, :users, null: false, key: [:id]
     end
 
     create_table(:posts) do
       primary_key :id
-      foreign_key :user_id, :users, :null=>false, :key=>[:id]
+      foreign_key :user_id, :users, null: false, key: [:id]
       String :title, text: true, null: false
       String :source, text: true, null: false
       String :content, text: true, null: false

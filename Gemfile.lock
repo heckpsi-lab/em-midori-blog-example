@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    base62 (1.0.0)
     em-midori (0.1.5.2)
       eventmachine (~> 1.2)
       http_parser.rb (~> 0.6)
@@ -13,6 +14,8 @@ GEM
     rake (11.3.0)
     sequel (4.40.0)
     tool (0.2.3)
+    uuid64 (0.0.7)
+      base62 (~> 1.0)
 
 PLATFORMS
   ruby
@@ -24,6 +27,7 @@ DEPENDENCIES
   pg_jruby
   rake
   sequel (~> 4.40)
+  uuid64
 
 BUNDLED WITH
    1.13.6

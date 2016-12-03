@@ -13,7 +13,7 @@ Midori::Configure.before = proc do
   Dir[File.dirname(__FILE__) + '/models/*.rb'].each {|file| require file }
 end
 
-define_error :unauthorized_error
+define_error :unauthorized_error, :resource_conflict
 
 class Route < Midori::API
   use CookieMiddleware
@@ -22,6 +22,14 @@ class Route < Midori::API
                          {},
                          {code: 401,
                           msg: 'User not existed or password incorrect.'
+                         }.to_json)
+  end
+
+  capture ResourceConflict do
+    Midori::Response.new(409,
+                         {},
+                         {code: 409,
+                          msg: 'Resource has been occupied'
                          }.to_json)
   end
   mount '/post', PostRoute
