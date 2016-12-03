@@ -6,6 +6,12 @@ class PostService
       {code: 200, result: post['content']}
     end
 
+    def request_post_source(id)
+      post = Post.find(id: id)
+      raise Midori::Exception::NotFound if post.nil?
+      {code: 200, result: post['source']}
+    end
+
     def create_post(user, title, source)
       user.add_post(title: title,
                     source: source,
